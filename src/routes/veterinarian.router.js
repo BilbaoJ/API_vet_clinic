@@ -1,24 +1,15 @@
 const express = require('express');
 const router = express.Router();
+const veterinariansController = require('../controllers/veterinarian.controller')
 
-router.get('/', (req, res) => {
-  res.send('Veterinarian')
-});
+router.get('/', veterinariansController.readVeterinarians);
 
-router.get('/:id', (req, res) => {
-  res.send('Veterinarian')
-});
+router.get('/:id', veterinariansController.readVeterinarian);
 
-router.post('/', (req, res) => {
-  res.send('Veterinarian')
-});
+router.post('/', veterinariansController.createVeterinarian);
 
-router.put('/:id', (req, res) => {
-  res.send('Veterinarian')
-});
+router.put('/:id', veterinariansController.updateVeterinarian);
 
-router.delete('/:id', (req, res) => {
-  res.send('Veterinarian')
-});
+router.delete('/:id', veterinariansController.deleteVeterinarian);
 
 module.exports = router;
