@@ -4,6 +4,8 @@ const {readDocument,
   deleteDocument,
   updateDocument
 } = require('../services/mongodb.service');
+const dotenv = require('dotenv');
+dotenv.config();
 
 const readPets = async (req, res) => {
   let response = {};

@@ -4,6 +4,7 @@ const routerApi = require('./routes/index')
 const app = express();
 dotenv.config();
 const PORT = process.env.PORT;
+app.use(express.json())
 
 routerApi(app);
 
