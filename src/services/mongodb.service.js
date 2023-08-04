@@ -32,7 +32,7 @@ const deleteDocument = async (collectionName, filter)=>{
   return await collection.deleteOne(filter);
 }
 
-const modifyDocument = async (collectionName, filter, newDocument)=>{
+const updateDocument = async (collectionName, filter, newDocument)=>{
   let db = await conectDB();
   let coleccion = db.collection(collectionName);
   return await coleccion.replaceOne(filter, newDocument);
@@ -43,4 +43,4 @@ module.exports = {
   readDocument,
   createDocument,
   deleteDocument,
-  modifyDocument};
+  updateDocument};
