@@ -2,7 +2,7 @@ const MongoService = require('./mongodb.service');
 const dotenv = require('dotenv');
 dotenv.config();
 
-class VeterinaransService {
+class VeterinariansService {
   constructor(){
     this.collection = process.env.COLLECTION_VETERINARIANS;
     this.mongoDB = new MongoService();
@@ -29,4 +29,4 @@ class VeterinaransService {
   }
 }
 
-module.exports = VeterinaransService;
+module.exports = VeterinariansService;
