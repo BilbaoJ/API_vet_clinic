@@ -1,16 +1,9 @@
-const express = require('express');
+const createApp = require('./app');
 const dotenv = require('dotenv');
-const routerApi = require('./routes/index')
-const app = express();
 dotenv.config();
 const PORT = process.env.PORT;
-app.use(express.json())
 
-routerApi(app);
-
-app.get('/', (req, res) => {
-  res.send('Holaa')
-});
+const app = createApp();
 
 app.listen(PORT, () => {
   console.log(`API listening in: http://localhost:${PORT}`)

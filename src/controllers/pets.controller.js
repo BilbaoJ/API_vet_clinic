@@ -1,16 +1,10 @@
-const {readDocument,
-  readDocuments,
-  createDocument,
-  deleteDocument,
-  updateDocument
-} = require('../services/mongodb.service');
-const dotenv = require('dotenv');
-dotenv.config();
+const PetsService = require('../services/pets.service');
+const service = new PetsService();
 
 const readPets = async (req, res) => {
   let response = {};
   try {
-    let result = await readDocuments(process.env.COLLECTION_PETS);
+    let result = await service.readPets();
     response.ok = true;
     response.message = "Registries read successfully";
     response.info = result;
@@ -27,7 +21,7 @@ const readPet = async (req, res) => {
   let response = {};
   try {
     let { id } = req.params;
-    let result = await readDocument(process.env.COLLECTION_PETS, id);
+    let result = await service.mongoDB(id);
     response.ok = true;
     response.message = "Registry read successfully";
     response.info = result;
@@ -44,7 +38,7 @@ const createPet = async (req, res) => {
   let response = {};
   try {
     let info = req.body;
-    let result = await createDocument(process.env.COLLECTION_PETS, info);
+    let result = await service.createPet(info);
     response.ok = true;
     response.message = "Registry created successfully";
     response.info = result;
@@ -61,7 +55,7 @@ const deletePet = async (req, res) => {
   let response = {};
   try {
     let { id } = req.params;
-    let result = await deleteDocument(process.env.COLLECTION_PETS, id);
+    let result = await service.deletePet(id);
     response.ok = true;
     response.message = "Registry deleted successfully";
     response.info = result;
@@ -79,7 +73,7 @@ const updatePet = async (req, res) => {
   try {
     let { id } = req.params;
     let info = req.body;
-    let result = await updateDocument(process.env.COLLECTION_PETS, id, info);
+    let result = await service.updatePet(id, info);
     response.ok = true;
     response.message = "Registry updated successfully";
     response.info = result;
