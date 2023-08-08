@@ -29,7 +29,7 @@ describe('Test for petsService', () => {
 
     test('should return a list of pets', async () => {
       const pets = await service.readPets();
-      expect(pets.length).toEqual(1);
+      expect(pets.length).toEqual(2);
      });
   });
 });
