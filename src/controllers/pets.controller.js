@@ -21,7 +21,7 @@ const readPet = async (req, res) => {
   let response = {};
   try {
     let { id } = req.params;
-    let result = await service.mongoDB(id);
+    let result = await service.readPet(id);
     response.ok = true;
     response.message = "Registry read successfully";
     response.info = result;
