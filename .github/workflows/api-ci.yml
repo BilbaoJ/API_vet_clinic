@@ -16,3 +16,28 @@ jobs:
             - name: Run unit tests
               shell: bash
               run: npm run test
+
+    build-docker-image:
+      needs: unit-tests
+      runs-on: ubuntu-lastest
+      steps:
+        - name: Checkout
+          uses: actions/checkout@v2
+        - name: Login to DockerHub
+          uses: docker/login-action@v2
+          with:
+            username: ${{ secrets.DOCKERHUB_USERNAME }}
+            password: ${{ secrets.DOCKERHUB_TOKEN }}
+        - name: Build and Push Docker image
+          uses: docker/build-push-action@v2
+          with:
+            context: ./
+            file: ./Dockerfile
+            push: true
+            tags: ${{ secrets.DOCKERHUB_USERNAME }}/api-vet-clinic:latest
+            secrets: |
+             "URI_MONGODB=${{ secrets.URI_MONGODB }}"
+             "PORT=${{ secrets.PORT }}"
+             "DB_MONGODB=${{ secrets.DB_MONGODB }}"
+             "COLLECTION_PETS=${{ secrets.COLLECTION_PETS }}"
+             "COLLECTION_VETERINARIANS=${{ secrets.COLLECTION_VETERINARIANS }}"

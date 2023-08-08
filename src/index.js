@@ -5,6 +5,4 @@ const PORT = process.env.PORT;
 
 const app = createApp();
 
-app.listen(PORT, () => {
-  console.log(`API listening in: http://localhost:${PORT}`)
-});
+app.listen(PORT);
