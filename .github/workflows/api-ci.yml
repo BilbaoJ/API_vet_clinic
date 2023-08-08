@@ -37,9 +37,3 @@ jobs:
             file: ./Dockerfile
             push: true
             tags: ${{ secrets.DOCKERHUB_USERNAME }}/api-vet-clinic:latest
-            secrets: |
-             "URI_MONGODB=${{ secrets.URI_MONGODB }}"
-             "PORT=${{ secrets.PORT }}"
-             "DB_MONGODB=${{ secrets.DB_MONGODB }}"
-             "COLLECTION_PETS=${{ secrets.COLLECTION_PETS }}"
-             "COLLECTION_VETERINARIANS=${{ secrets.COLLECTION_VETERINARIANS }}"
