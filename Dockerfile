@@ -1,7 +1,7 @@
 FROM node:18
 WORKDIR /usr/src/app
 COPY package*.json ./
-RUN npm ci --omit=dev
+RUN npm install --production
 RUN --mount=type=secret,id=URI_MONGODB \
   --mount=type=secret,id=PORT \
   --mount=type=secret,id=DB_MONGODB \
