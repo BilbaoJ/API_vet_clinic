@@ -1,6 +1,6 @@
 const PetsService = require('../src/services/pets.service');
 
-const mongoDbStub = {
+const dbStub = {
   readDocuments: () => [
       {
         id: 1,
@@ -17,7 +17,7 @@ const mongoDbStub = {
     ]
 };
 
-jest.mock('../src/services/mongodb.service.js', () => jest.fn().mockImplementation(() => mongoDbStub));
+jest.mock('../src/services/dynamodb.service.js', () => jest.fn().mockImplementation(() => dbStub));
 
 describe('Test for petsService', () => {
   let service;
