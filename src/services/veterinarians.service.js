@@ -1,31 +1,32 @@
-const MongoService = require('./mongodb.service');
+//const MongoService = require('./mongodb.service');
+const DynamoService = require('./dynamodb.service');
 const dotenv = require('dotenv');
 dotenv.config();
 
 class VeterinariansService {
   constructor(){
     this.collection = process.env.COLLECTION_VETERINARIANS;
-    this.mongoDB = new MongoService();
+    this.dynamoDB = new DynamoService();
   }
 
   readVeterinarians(){
-    return this.mongoDB.readDocuments(this.collection);
+    return this.dynamoDB.readDocuments(this.collection);
   }
 
   readVeterinarian(id){
-    return this.mongoDB.readDocument(this.collection, id);
+    return this.dynamoDB.readDocument(this.collection, id);
   }
 
   createVeterinarian(info){
-    return this.mongoDB.createDocument(this.collection, info);
+    return this.dynamoDB.createDocument(this.collection, info);
   }
 
   updateVeterinarian(id, newInfo){
-    return this.mongoDB.updateDocument(this.collection, id, newInfo);
+    return this.dynamoDB.updateDocument(this.collection, newInfo);
   }
 
   deleteVeterinarian(id){
-    return this.mongoDB.deleteDocument(this.collection, id);
+    return this.dynamoDB.deleteDocument(this.collection, id);
   }
 }
 
