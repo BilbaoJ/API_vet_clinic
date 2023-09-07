@@ -27,8 +27,8 @@ class DynamoDBService{
   async readDocument(tableName, filter) {
     let params = {
       TableName: tableName,
-      key:{
-        filter
+      Key:{
+        id: filter
       }
     };
     return await this.dynamoClient.get(params).promise();
@@ -46,7 +46,7 @@ class DynamoDBService{
     let params = {
       TableName: tableName,
       Key: {
-        filter
+        id: filter
       }
     };
     return await this.dynamoClient.delete(params).promise();
