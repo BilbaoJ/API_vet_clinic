@@ -1,0 +1,20 @@
+name: API VET CLINIC CD
+on:
+  workflow_run:
+    workflows: ["API VET CLINIC CI"]
+    types:
+      - completed
+
+jobs:
+
+  build:
+
+    runs-on: self-hosted
+
+    steps:
+    - name: pull docker image
+      run: sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/api-vet-clinic:latest
+    - name: delete old docker container
+      run: sudo docker rm -f api-vet-clinic-container || true
+    - name: run docker container
+      run: sudo docker run -d -p 8080:8080 --name api-vet-clinic-container ${{ secrets.DOCKERHUB_USERNAME }}/api-vet-clinic
